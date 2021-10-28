@@ -10,6 +10,7 @@ const socket = io(server);
 
     socket.on('messageToAll', (data) => {
         console.log(`Nouveau message dans le chat public : ${data.data}`)
+        displayMessage('Utilisateur', data.data, '?:?? pm')
     })
 
     //api calls
@@ -20,7 +21,20 @@ const socket = io(server);
     })
 })()
 
+//functions used in socket context
+    //on submit button click, send it to the server
 function sendMessage() {
     socket.emit('messageToAll', { type : 'new_public_message', data : document.querySelector('#messageInput').value})
-    // console.log(document.querySelector('#messageInput').value)
+}
+    //once a message is sent by the server, add it to the DOM
+function displayMessage(userName, msg, time) {
+    document.querySelector('.chat-list ul').innerHTML += '' +
+        '<li class="">' +
+        '<div class="name">' +
+        '   <span class="">'+userName+'</span>' +
+        '</div>' +
+        '<div class="message">' +
+        '   <p>'+msg+'</p>' +
+        '   <span class="msg-time">time</span>' +
+        '</div>'
 }

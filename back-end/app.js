@@ -15,15 +15,17 @@ module.exports = function (app, server) {
 
     const io = require('socket.io')(server, {
         cors: {
+            //:63342 port is the one used by my WebStorm IDE
             origin: ["http://127.0.0.1:5000", "http://localhost:63342"],
             methods: ["GET", "POST"]
         }
     })
 
+    //add sockets functions the server
     require('./socket/chat')(io);
 
     app.use(function (req, res, next) { req.io = io; next(); });
-
+    //a '/test' api call is made front side to test express (successful)
     app.get('/test', (req, res, next) => {
         res.status(200).json({ hello: 'world' })
     })
