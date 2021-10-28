@@ -15,7 +15,7 @@ module.exports = function (app, server) {
 
     const io = require('socket.io')(server, {
         cors: {
-            origin: "http://127.0.0.1:5000",
+            origin: ["http://127.0.0.1:5000", "http://localhost:63342"],
             methods: ["GET", "POST"]
         }
     })
