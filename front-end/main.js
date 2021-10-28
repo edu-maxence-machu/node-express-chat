@@ -1,10 +1,15 @@
+const server = 'http://127.0.0.1:3000'
+const socket = io(server);
+
 (function () {
-    const server = 'http://127.0.0.1:3000'
-    const socket = io(server);
 
     //socket part
     socket.on('notification', (data) => {
         console.log('Message depuis le seveur:', data);
+    })
+
+    socket.on('messageToAll', (data) => {
+        console.log(`Nouveau message dans le chat public : ${data.data}`)
     })
 
     //api calls
