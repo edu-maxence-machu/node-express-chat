@@ -35,6 +35,6 @@ function displayMessage(userName, msg, time) {
         '</div>' +
         '<div class="message">' +
         '   <p>'+msg+'</p>' +
-        '   <span class="msg-time">time</span>' +
+        '   <span class="msg-time">'+time+'</span>' +
         '</div>'
 }
