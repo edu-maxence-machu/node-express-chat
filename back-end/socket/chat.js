@@ -11,15 +11,15 @@ module.exports = function (io) {
       io.emit('notification', { type: 'removed_user', data: socket.id });
     });
     
-    socket.on('userMessage', (msg,userId) => {
-      const message = new sMessage({
-        text: msg,
+    socket.on('chat', (message) => {
+      const msg = new sMessage({
+        text: message.data,
         timestamp: new Date(),
-        userid: userId
+        userid: "azdazdazdzad"
     });
 
-    message.save().then(() => {
-      io.emit('userMessage', msg);
+    msg.save().then(() => {
+      io.emit('chat', message.text);
     }).catch((error) => {
       console.log(error)
     })

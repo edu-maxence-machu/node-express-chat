@@ -36,12 +36,6 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${
 
         console.log(`Connecté au client ${socket.id}`);
         io.emit('notification', `Bonjour, ${socket.id}`);
-
-        socket.on('chat', (message) => {
-        console.log(`Jai recu : ${message.data}` );
-
-        io.emit('chat', message.data);
-        })
     })
 
     require('./socket/chat')(io);
