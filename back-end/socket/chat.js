@@ -9,7 +9,7 @@ module.exports = function (io) {
       console.log(`user ${socket.id} disconnected`);
       io.emit('notification', { type: 'removed_user', data: socket.id });
     });
-
+    
     socket.on('...', (msg) => {
 
     });
