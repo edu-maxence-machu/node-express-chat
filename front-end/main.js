@@ -11,7 +11,7 @@
     }).then((data) => {
         console.log(data);
     })
-
+    
     let chat = document.getElementById('chat');
 
     console.log(document.forms.message)
