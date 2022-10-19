@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Connexion</title>
-
+	<link rel="stylesheet" href="style_login.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"
 		integrity="sha512-N5JbZMETkl+0SZh5l8OA2VxSfF120owfQyy54iAXTJIKuqAn3A9TrNz1ypB55o8aSU5MxaodEgv74wGUvgUynQ=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -14,15 +14,26 @@
 </head>
 
 <body>
-    <form method="post" name="register">
-        <div class="input-area">
-            <div class="input-wrapper">
-                <input name="inputLogin" type="text" value="" >
-                <input name="inputPassword" type="text" value="" >
-            </div>
-            <input type="submit" value="Submit" class="send-btn">
-        </div>
-    </form>
+    <div class="login-box">
+        <h2>Register</h2>
+        <form method="post" >
+          <div class="user-box">
+            <input type="text" name="" required="">
+            <label>Username</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="" required="">
+            <label>Password</label>
+          </div>
+          <a href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </a>
+        </form>
+      </div>
 </body>
 
 </html>
