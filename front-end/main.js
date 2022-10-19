@@ -13,6 +13,7 @@
     })
 
     let chat = document.getElementById('chat');
+    let message = document.getElementsByClassName('message');
 
     console.log(document.forms.message)
 
@@ -34,7 +35,26 @@
         console.log(message);
 
         let msg = document.createElement('li');
-        msg.innerText = message;
+        msg.classList.add('me');
+
+        let msgAuthor = document.createElement('div');
+        msgAuthor.classList.add('name');
+        msgAuthor.innerHTML = "Quentin";
+
+        let msgMessage = document.createElement('div');
+        msgMessage.classList.add('message');
+
+        let msgMessageText = document.createElement('p');
+        msgMessageText.innerHTML = message;
+
+        let msgDate = document.createElement('span');
+        msgDate.classList.add('msg-time');
+        msgDate.innerHTML = "12:00";
+
+        msgMessage.appendChild(msgMessageText);
+        msgMessage.appendChild(msgDate);
+        msg.appendChild(msgAuthor);
+        msg.appendChild(msgMessage);
         chat.appendChild(msg);
     })
 
