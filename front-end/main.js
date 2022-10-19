@@ -13,7 +13,6 @@
     })
 
     let chat = document.getElementById('chat');
-    let message = document.getElementsByClassName('message');
 
     console.log(document.forms.message)
 

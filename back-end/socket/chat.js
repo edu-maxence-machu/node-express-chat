@@ -19,7 +19,7 @@ module.exports = function (io) {
     });
 
     msg.save().then(() => {
-      io.emit('chat', message.text);
+      io.emit('chat', message.data);
     }).catch((error) => {
       console.log(error)
     })
