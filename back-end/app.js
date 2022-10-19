@@ -33,7 +33,7 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${
         console.log(`user ${socket.id} disconnected`);
         io.emit('notification', `Bye ${socket.id}`);
         });
-        
+
         console.log(`Connecté au client ${socket.id}`);
         io.emit('notification', `Bonjour, ${socket.id}`);
     })
@@ -41,7 +41,9 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${
     require('./socket/chat')(io);
     
     app.use(function (req, res, next) { req.io = io; next(); });
-
+    const userRoutes = require('./routes/user');
+    app.use('/auth', userRoutes);
+    
     app.get('/test', (req, res, next) => {
         res.status(200).json({ hello: 'world' })
     })
