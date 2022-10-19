@@ -26,9 +26,9 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${
             methods: ["GET", "POST"]
         }
     })
-
+    
     require('./socket/chat')(io);
-
+    
     app.use(function (req, res, next) { req.io = io; next(); });
 
     app.get('/test', (req, res, next) => {

@@ -1,4 +1,5 @@
 module.exports = function (io) {
+  const sMessage = require('../models/message');
 
   io.on('connection', (socket) => {
     console.log(`Connecté au client ${socket.id}`)
@@ -10,8 +11,19 @@ module.exports = function (io) {
       io.emit('notification', { type: 'removed_user', data: socket.id });
     });
     
-    socket.on('...', (msg) => {
-
+    socket.on('userMessage', (msg,userId) => {
+      const message = new sMessage({
+        text: msg,
+        timestamp: new Date(),
+        userid: userId
     });
+
+    message.save().then(() => {
+      io.emit('userMessage', msg);
+    }).catch((error) => {
+      console.log(error)
+    })
+    });
+
   })
 }
