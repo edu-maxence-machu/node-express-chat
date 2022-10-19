@@ -33,7 +33,7 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${
         console.log(`user ${socket.id} disconnected`);
         io.emit('notification', `Bye ${socket.id}`);
         });
-
+        
         console.log(`Connecté au client ${socket.id}`);
         io.emit('notification', `Bonjour, ${socket.id}`);
     })
