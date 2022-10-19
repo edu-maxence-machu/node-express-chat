@@ -22,9 +22,26 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${
 
     const io = require('socket.io')(server, {
         cors: {
-            origin: "http://127.0.0.1:5000",
+            origin: "http://127.0.0.1:5500",
             methods: ["GET", "POST"]
         }
+    })
+
+    /*Nous pouvons utiliser la constante io pour le websocket*/
+    io.on('connection', (socket) => {
+        socket.on('disconnect', () => {
+        console.log(`user ${socket.id} disconnected`);
+        io.emit('notification', `Bye ${socket.id}`);
+        });
+    
+        console.log(`Connecté au client ${socket.id}`);
+        io.emit('notification', `Bonjour, ${socket.id}`);
+    
+        socket.on('chat', (message) => {
+        console.log(`Jai recu : ${message.data}` );
+    
+        io.emit('chat', message.data);
+        })
     })
 
     require('./socket/chat')(io);

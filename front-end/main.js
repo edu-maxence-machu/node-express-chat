@@ -12,4 +12,30 @@
         console.log(data);
     })
 
+    let chat = document.getElementById('chat');
+
+    console.log(document.forms.message)
+
+    document.forms.message.addEventListener('submit', function(e){
+        console.log('submit');
+        e.preventDefault();
+        let inputMessage = document.forms.message.inputMessage.value;
+
+        socket.emit('chat', {
+            data: inputMessage
+        })
+    })
+
+    socket.on('notification', function(notif) {
+        console.log(notif);
+    })
+
+    socket.on('chat', function(message) {
+        console.log(message);
+
+        let msg = document.createElement('li');
+        msg.innerText = message;
+        chat.appendChild(msg);
+    })
+
 })()
