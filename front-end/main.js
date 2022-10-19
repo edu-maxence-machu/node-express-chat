@@ -24,6 +24,8 @@
         socket.emit('chat', {
             data: inputMessage
         })
+
+        document.forms.message.inputMessage.value = '';
     })
 
     socket.on('notification', function(notif) {
