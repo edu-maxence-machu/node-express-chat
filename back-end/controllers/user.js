@@ -3,17 +3,31 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res, next) => {
-    
-    let hash = await bcrypt.hash(req.body.password, 10);
-    
-    const user = new sUser({
-        user_name: req.body.user_name,
-        password: hash
-    });
 
-    user.save()
-    .then(() => res.status(201).json({ message: 'Crée !' }))
-    .catch(error => res.status(400).json({ error }));
+    const user = await sUser.findOne({ user_name: req.body.user_name });
+    if (user) {
+        return res.status(401).json({ error: 'Utilisateur déjà existant' });
+    }
+
+    // Verify if email is already used
+    const email = await sUser.findOne({ email: req.body.email });
+    if (email) {
+        return res.status(401).json({ error: 'Email déjà utilisé' });
+    }
+
+    bcrypt.hash(req.body.password, 10)
+        .then(hash => {
+            const user = new sUser({
+                user_name: req.body.user_name,
+                email: req.body.email,
+                password: hash
+            });
+            user.save()
+                .then(() => res.status(201).json({ message: 'Utilisateur créé' }))
+                .catch(error => res.status(400).json({ error }));
+        })
+        .catch(error => res.status(500).json({ error }));
+
 };
 
 exports.login = (req, res, next) => {
@@ -44,7 +58,7 @@ exports.login = (req, res, next) => {
 
 exports.loginFromToken = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const decodedToken = jwt.verify(token, process.env.JWT_TOKEN);
     
     const userId = decodedToken.userId;
     if (req.body.userId && req.body.userId !== userId) {

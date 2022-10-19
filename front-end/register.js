@@ -19,6 +19,7 @@ document.getElementById('register').addEventListener('submit', (e) => {
       },
       body: JSON.stringify({
         user_name: form.elements.user_name.value,
+        email: form.elements.email.value,
         password: form.elements.password.value
       })
     }).then((response) => {
