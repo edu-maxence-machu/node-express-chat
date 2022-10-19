@@ -32,7 +32,7 @@ exports.login = (req, res, next) => {
             user_name: user.user_name,
             token: jwt.sign(
                 { userId: user._id },
-                process.env.JWT_SECRET,
+                process.env.JWT_TOKEN,
                 { expiresIn: '48h' }
               )
           });
@@ -63,7 +63,7 @@ exports.loginFromToken = (req, res, next) => {
         user_name: user.user_name,
         token: jwt.sign(
             { userId: user._id },
-            process.env.JWT_SECRET,
+            process.env.JWT_TOKEN,
             { expiresIn: '48h' }
             )
       });
