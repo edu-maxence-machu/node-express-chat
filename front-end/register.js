@@ -33,6 +33,6 @@ document.getElementById('register').addEventListener('submit', (e) => {
       }
     })
     function saveJWT(token){
-        window.localStorage.setItem('jwt', token)
+        window.localStorage.setItem('usr_token', token)
       }
   })
