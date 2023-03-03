@@ -45,6 +45,11 @@
 							<i class="fa fa-times"></i>
 						</a>
 					</li>
+					<li>
+						<input id="pseudoInput" type="text" value="" placeholder="Pseudo here">
+				<i class="fa fa-cog" onclick="updatePseudo()"></i>
+
+					</li>
 				</ul>
 				<div class="my-account">
 					<div class="image">
@@ -52,7 +57,7 @@
 						<i class="fa fa-circle online"></i>
 					</div>
 					<div class="name">
-						<span>John Doe</span>
+						<span id="Pseudo">John Doe</span>
 						<i class="fa fa-angle-down"></i>
 						<span class="availability">Available</span>
 					</div>
@@ -60,10 +65,10 @@
 				</div>
 			</div>
 			<div class="chat-area">
-				<div class="title"><b>Conversation title</b><i class="fa fa-search"></i></div>
+				<div id="title" class="title"><b>Conversation title</b><i class="fa fa-search"></i></div>
 				<div class="chat-list">
-					<ul>
-						<li class="me">
+					<ul id="messageList">
+						<!-- <li class="me">
 							<div class="name">
 								<span class="">John Doe</span>
 							</div>
@@ -80,15 +85,15 @@
 								<p>World</p>
 								<span class="msg-time">5:01 pm</span>
 							</div>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<div class="input-area">
 					<div class="input-wrapper">
-						<input type="text" value="" placeholder="Message here">
+						<input id="messageInput" type="text" value="" placeholder="Message here">
 						<i class="fa fa-smile-o"></i>
 					</div>
-					<input type="button" value="Submit" class="send-btn">
+					<input id="sendBtn" type="button" value="Submit" class="send-btn" onclick="submitMessage(event)">
 				</div>
 			</div>
 			<div class="right-tabs">
@@ -101,11 +106,11 @@
 				</ul>
 				<ul class="tabs-container">
 					<li class="active">
-						<ul class="member-list">
-							<li><span class="status online"><i class="fa fa-circle-o"></i></span><span>John Doe</span>
+						<ul id="memberList" class="member-list">
+							<!-- <li><span class="status online"><i class="fa fa-circle-o"></i></span><span>John Doe</span>
 							</li>
 							<li><span class="status online"><i class="fa fa-circle-o"></i></span><span>Christian
-									Smith</span></li>
+									Smith</span></li> -->
 						</ul>
 					</li>
 					<li></li>
